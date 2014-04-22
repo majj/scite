@@ -1,5 +1,9 @@
-scite
-=====
+scite theme and scripts
+=======================
+
+Monokai theme for scite
+
+lua script for autocomplete
 
 scite properties and scripts
 
@@ -11,11 +15,25 @@ scite properties and scripts
 - erlang
 - html
 - yaml
+- md
 - others
 
 install
 =======
+copy files into scite folder
 
-Monokai theme for scite
+setup your python, node, lua path or edit the path in property files, for example:
 
-reference sublime 
+command.go.*.lua
+
+command.compile.*.lua
+
+register mouse right button menu
+
+run `menu_add.reg`
+
+ 
+
+*reference sublime* 
+
+copyright 2014 MaboTech
