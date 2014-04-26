@@ -1,27 +1,61 @@
-
-
+--
 --[[
 -- script for scite
 -- mabotech
 ]]
+
+function OnSwitchFile(path)
+    print(path);
+end;
+
+-- split tag: <div class="mt"></div>
+function get_ptag(tag)
+    
+    local ptag    
+    j = 0    
+    for i in string.gmatch(tag, "%S+") do
+      j = j + 1
+      ptag = i
+      if j > 0 then
+          break
+      end       
+    end
+    return ptag    
+end
+
+function menu5()
+
+    print(scite.filename)
+
+    scite.StripShow("!'Explanation:'{}(&Search)\n'Name:'[Name](OK)(Cancel)");
+    
+    local t = os.time();
+    print(t);
+
+    print(os.date("%Y-%m-%d %H:%M:%S", t))  
+    print("menu5")
+
+end;
 
 dict = {
     ["{"] = "}",
     ["("] = ")", 
     ["["] = "]",
     ["\""] = "\"",
-    ["'"] = "'"
-};
-
+    ["'"] = "'",
+    };
+   
 function OnChar(char)
     -- <tag> check
     if(char==">") then
-            AddTag();
+        AddTag();
     else 
         local val = dict[char]
-        -- pair check
-        if val then
-            editor:insert(editor.CurrentPos, val);
+        --pair check
+        local nextv = editor.CharAt[editor.CurrentPos]
+        -- 32==space, 13 == \n
+        if val and (nextv == 32 or nextv == 13) then
+                editor:insert(editor.CurrentPos, val);
         end;
     end;
 end;
@@ -57,7 +91,8 @@ function AddTag()
             end
         until ((m_start == nil) or (m_start > posAlongLine)) -- Do't go past current position
         
-        -- add </tag><//tag>
+        -- add </tag><//tag> 
+        senv = get_ptag(senv)
         if(senv) and off==0 then --senv isn't empty and off is off
             editor:insert(editor.CurrentPos,"</"..senv..'>');
         end;
