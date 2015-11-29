@@ -1,6 +1,8 @@
 scite theme and scripts
 =======================
 
+[scintilla](http://www.scintilla.org/)
+
 Monokai theme for scite
 
 lua script for autocomplete
@@ -16,7 +18,7 @@ scite properties and scripts
 - html
 - yaml
 - md
-- others
+- others (bat, ini, toml)
 
 install
 =======
